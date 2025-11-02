@@ -3,7 +3,10 @@ name: Deploy VitePress site to GitHub Pages
 on:
   push:
     branches:
-      - main  # 监听 main 分支推送
+      - main
+
+permissions:
+  contents: write
 
 jobs:
   deploy:
@@ -12,26 +15,33 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # ✅ 安装 Node.js 环境
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'pnpm'   # 启用 pnpm 缓存
-
-      # ✅ 安装 pnpm（这一步是关键）
+      # ✅ 安装 pnpm（一定要放在 setup-node 前面）
       - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: 8.6.0  # 你本地用的版本，也可以换成 9.x 最新版
+          version: 8.6.0
+          run_install: false  # 不在这里自动执行 install
 
-      - run: pnpm install
-      - run: pnpm run docs:build
+      # ✅ 安装 Node.js，并启用 pnpm 缓存
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
 
-      # ✅ 添加 .nojekyll 防止 GitHub Pages 误用 Jekyll
+      # ✅ 安装依赖
+      - name: Install dependencies
+        run: pnpm install
+
+      # ✅ 构建 VitePress
+      - name: Build VitePress site
+        run: pnpm run docs:build
+
+      # ✅ 防止 Jekyll 误处理 .vitepress 文件夹
       - name: Disable Jekyll
         run: touch docs/.vitepress/dist/.nojekyll
 
-      # ✅ 部署到 gh-pages 分支
+      # ✅ 部署到 GitHub Pages（自动推送到 gh-pages 分支）
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
