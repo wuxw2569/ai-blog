@@ -35,7 +35,7 @@ jobs:
 
       # ✅ 构建 VitePress
       - name: Build VitePress site
-        run: pnpm run docs:build
+        run: pnpm run build
 
       # ✅ 防止 Jekyll 误处理 .vitepress 文件夹
       - name: Disable Jekyll
