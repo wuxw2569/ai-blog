@@ -13,7 +13,7 @@ export default defineConfig({
   themeConfig: {
     footer: {
       message: 'AI Blog',
-      copyright: 'Copyright © 2023 SFXCode',
+      copyright: 'Copyright © 2025 SFXCode',
     },
     search: {
       provider: 'local',
@@ -48,11 +48,11 @@ export default defineConfig({
 
 function nav() {
   return [
-    { text: 'Guide', link: '/guide/', activeMatch: '/guide/' },
-    { text: 'Configs', link: '/config/', activeMatch: '/config/' },
-    { text: 'Blog', link: '/blog/', activeMatch: '/blog/' },
+    { text: '指南', link: '/guide/', activeMatch: '/guide/' },
+    { text: '配置', link: '/config/', activeMatch: '/config/' },
+    { text: '博客' , link: '/blog/', activeMatch: '/blog/' },
     {
-      text: 'External Docs',
+      text: '外部文档',
       items: [
         {
           text: 'Vitepress',
@@ -68,7 +68,7 @@ function nav() {
       text: version,
       items: [
         {
-          text: 'Changelog',
+          text: '变更日志',
           link: 'https://github.com/sfxcode/vitepress-blog-starter/blob/main/CHANGELOG.md',
         },
       ],
@@ -79,14 +79,14 @@ function nav() {
 function sidebarGuide() {
   return [
     {
-      text: 'Introduction',
+      text: '介绍',
       collapsible: true,
       items: [
-        { text: 'What is this?', link: '/guide/' },
+        { text: '什么是这个?', link: '/guide/' },
       ],
     },
     {
-      text: 'Features',
+      text: '功能',
       collapsible: true,
       items: [
         { text: 'UnoCSS', link: '/guide/features/unocss' },
@@ -98,9 +98,9 @@ function sidebarGuide() {
 function sidebarConfig() {
   return [
     {
-      text: 'Config',
+      text: '配置',
       items: [
-        { text: 'Introduction', link: '/config/' },
+        { text: '介绍', link: '/config/' },
         { text: 'UnoCSS', link: '/config/unocss' },
       ],
     },
