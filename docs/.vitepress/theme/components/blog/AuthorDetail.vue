@@ -27,14 +27,14 @@ const { currentAuthor: author, prevAuthor, nextAuthor } = useAuthors()
             class="inline-flex items-center font-medium dark:text-white hover:text-[color:var(--vp-c-brand-dark)]"
           >
             <div class="i-bx:arrow-back mr-2" />
-            <span>Previous Author</span>
+            <span>上一位作者</span>
           </a>
           <div v-if="!prevAuthor" />
           <a
             v-if="nextAuthor" :href="`${site.base}blog${nextAuthor.href}`"
             class="inline-flex items-center font-medium dark:text-white hover:text-[color:var(--vp-c-brand-dark)]"
           >
-            <span>Next Author</span>
+            <span>下一位作者</span>
             <div class="i-bx:right-arrow-alt ml-2" />
           </a>
         </div>

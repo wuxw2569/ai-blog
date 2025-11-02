@@ -31,14 +31,14 @@ const author = findByName(post.value.author)
           class="inline-flex items-center font-medium dark:text-white hover:text-[color:var(--vp-c-brand-dark)]"
         >
           <div class="i-bx:arrow-back mr-2" />
-          <span>Previous Post</span>
+          <span>上一篇文章</span>
         </a>
         <div v-if="!prevPost" />
         <a
           v-if="nextPost" :href="`${site.base}blog${nextPost.href}`"
           class="inline-flex items-center font-medium dark:text-white hover:text-[color:var(--vp-c-brand-dark)]"
         >
-          <span>Next Post</span>
+          <span>下一篇文章</span>
           <div class="i-bx:right-arrow-alt ml-2" />
         </a>
       </div>

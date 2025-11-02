@@ -3,8 +3,8 @@ import { defineConfig } from 'vitepress'
 import { version } from '../../package.json'
 
 export default defineConfig({
-  base: '/vitepress-blog-starter/',
-  description: 'Blog included. Built on top of VitePress and UnoCSS.',
+  base: '/ai-blog/',
+  description: '内置博客功能。基于VitePress和UnoCSS构建的AI博客。',
   markdown: {
     headers: {
       level: [0, 0],
@@ -12,14 +12,14 @@ export default defineConfig({
   },
   themeConfig: {
     footer: {
-      message: 'VitePress Blog Starter',
+      message: 'AI Blog',
       copyright: 'Copyright © 2023 SFXCode',
     },
     search: {
       provider: 'local',
     },
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/sfxcode/vitepress-blog-starter' },
+      { icon: 'github', link: 'https://github.com/wuxw2569/ai-blog' },
     ],
     editLink: {
       pattern: 'https://github.com/sfxcode/vitepress-blog-starter/edit/main/docs/:path',
@@ -31,12 +31,12 @@ export default defineConfig({
       '/config/': sidebarConfig(),
     },
     blog: {
-      title: 'My Blog',
+      title: 'AI Blog',
       description: 'Some articles for sample Blog',
     },
 
   },
-  title: 'VitePress Blog Starter',
+  title: 'AI Blog',
   vite: {
     plugins: [
       Unocss({

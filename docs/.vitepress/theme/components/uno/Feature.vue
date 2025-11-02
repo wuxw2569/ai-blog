@@ -5,9 +5,9 @@
         <div class="w-full space-y-12 lg:w-1/2 ">
           <div>
             <h1 class="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-white">
-              UnoCSS
-              <br>Components
-            </h1>
+          UnoCSS
+          <br>组件库
+        </h1>
             <div class="mt-2">
               <span class="inline-block w-40 h-1 rounded-full bg-[color:var(--vp-c-brand-dark)]" />
               <span class="inline-block w-3 h-1 ml-1 rounded-full bg-[color:var(--vp-c-brand-dark)]" />
@@ -32,12 +32,11 @@
 
             <div class="mt-4 md:mx-4 md:mt-0">
               <h1 class="text-2xl font-semibold text-gray-700 capitalize dark:text-white">
-                Copy & paste components
+                复制粘贴组件
               </h1>
 
               <p class="mt-3 text-gray-500 dark:text-gray-300">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident ab nulla quod dignissimos vel non
-                corrupti doloribus voluptatum eveniet
+                便捷的复制粘贴功能，让你快速实现各种UI组件，无需从头开始编写复杂代码。
               </p>
             </div>
           </div>
@@ -59,12 +58,11 @@
 
             <div class="mt-4 md:mx-4 md:mt-0">
               <h1 class="text-2xl font-semibold text-gray-700 capitalize dark:text-white">
-                Zero Configrations
+                零配置使用
               </h1>
 
               <p class="mt-3 text-gray-500 dark:text-gray-300">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident ab nulla quod dignissimos vel non
-                corrupti doloribus voluptatum eveniet
+                开箱即用的配置方案，无需繁琐的设置即可快速集成到你的项目中，节省开发时间。
               </p>
             </div>
           </div>
@@ -90,12 +88,11 @@
 
             <div class="mt-4 md:mx-4 md:mt-0">
               <h1 class="text-2xl font-semibold text-gray-700 capitalize dark:text-white">
-                elegant Dark Mode
+                优雅的深色模式
               </h1>
 
               <p class="mt-3 text-gray-500 dark:text-gray-300">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident ab nulla quod dignissimos vel non
-                corrupti doloribus voluptatum eveniet
+                精心设计的深色主题，保护眼睛，提供舒适的阅读体验，同时展现现代感的界面设计。
               </p>
             </div>
           </div>
