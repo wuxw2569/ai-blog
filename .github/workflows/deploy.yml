@@ -8,16 +8,30 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
+
+      # ✅ 安装 Node.js 环境
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: pnpm
-      - run: corepack enable
+          cache: 'pnpm'   # 启用 pnpm 缓存
+
+      # ✅ 安装 pnpm（这一步是关键）
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8.6.0  # 你本地用的版本，也可以换成 9.x 最新版
+
       - run: pnpm install
       - run: pnpm run docs:build
-      - run: touch docs/.vitepress/dist/.nojekyll
+
+      # ✅ 添加 .nojekyll 防止 GitHub Pages 误用 Jekyll
+      - name: Disable Jekyll
+        run: touch docs/.vitepress/dist/.nojekyll
+
+      # ✅ 部署到 gh-pages 分支
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
