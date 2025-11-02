@@ -1,6 +1,6 @@
 Guide Overview
 
-Vitepress sample with
+Vitepress 博客示例
 
 * UnoCSS
 * ANU
