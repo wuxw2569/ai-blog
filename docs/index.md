@@ -4,7 +4,7 @@ layout: home
 hero:
   name: VitePress
   text: AI 博客
-  tagline: 内置博客功能。基于UnoCSS和Anu构建。
+  tagline: 我的AI博客, 内置博客功能。基于UnoCSS和Anu构建。
   actions:
     - theme: brand
       text: 使用指南
