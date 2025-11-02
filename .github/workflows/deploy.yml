@@ -1,32 +1,25 @@
-name: Deploy VitePress site to GitHub Pages
-on:
-  push:
-    branches: [ main ]
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: npm
-      - name: Install dependencies
-        run: npm ci
-      - name: Build VitePress site
-        run: npm run build
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: docs/.vitepress/dist
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
+import { defineConfig } from 'vitepress'
+
+export default defineConfig({
+  lang: 'zh-CN',
+  title: 'AI Blog',
+  description: '记录AI学习与Web开发之旅',
+  base: '/ai-blog/', // ✅ 如果你部署在 GitHub Pages，比如 https://wuxw2569.github.io/ai-blog/
+  themeConfig: {
+    siteTitle: 'AI Blog',
+    nav: [
+      { text: '首页', link: '/' },
+      { text: '博客', link: '/blog/' },
+      { text: '关于', link: '/about/' },
+    ],
+    sidebar: {
+      '/blog/': [
+        { text: '入门指南', link: '/blog/getting-started' },
+        { text: 'AI 工具使用', link: '/blog/ai-tools' },
+      ],
+    },
+    socialLinks: [
+      { icon: 'github', link: 'https://github.com/wuxw2569/ai-blog' },
+    ],
+  },
+})
