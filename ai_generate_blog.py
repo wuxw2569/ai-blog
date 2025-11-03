@@ -58,7 +58,7 @@ title: [文章标题]
 date: [发布日期]
 tags: [标签列表]
 summary: [文章摘要]
-author: AI助手
+author: ai-helper
 ---
 """
 
@@ -106,7 +106,7 @@ if "author:" not in content[:500]:
     if len(parts) >= 3:
         yaml_part = parts[1]
         if not yaml_part.strip().endswith("author:"):
-            parts[1] = yaml_part + "\nauthor: AI助手\n"
+            parts[1] = yaml_part + "\nauthor: ai-helper\n"
         content = "---".join(parts)
 
 # 插入封面路径
@@ -115,7 +115,7 @@ if content.startswith("---"):
     if "cover:" not in content[:500]:
         content = content.replace("---", f"---\ncover: ./images/{today}-{slug}.png", 1)
 else:
-    content = f"---\ncover: ./images/{today}-{slug}.png\nauthor: AI助手\n---\n{content}"
+    content = f"---\ncover: ./images/{today}-{slug}.png\nauthor: ai-helper\n---\n{content}"
 
 
 with open(blog_filename, "w", encoding="utf-8") as f:
