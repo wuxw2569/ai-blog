@@ -59,7 +59,7 @@ resp = client.chat.completions.create(
     model="glm-4-flash",
     messages=[{"role": "user", "content": blog_prompt}],
 )
-content = resp.choices[0].message["content"].strip()
+content = resp.choices[0].message.content.strip()
 
 # === 5. 生成封面图 ===
 print("🎨 正在生成封面图...")
