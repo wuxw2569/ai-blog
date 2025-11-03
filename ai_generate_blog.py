@@ -52,7 +52,14 @@ blog_prompt = f"""
 - Markdown 格式
 - 包含：问题场景、AI解决思路、实现步骤（带代码示例）、效果展示、总结
 - 语气自然、有实操经验
-- 输出时带 YAML 头部(title/date/tags/summary)
+- 输出时带 YAML 头部(title/date/tags/summary/author)，严格按照以下格式，只需要一个---开始和一个---结束，不要在YAML中使用额外的代码块或嵌套格式：
+---
+title: [文章标题]
+date: [发布日期]
+tags: [标签列表]
+summary: [文章摘要]
+author: AI助手
+---
 """
 
 resp = client.chat.completions.create(
@@ -88,11 +95,27 @@ try:
 except Exception as e:
     print(f"⚠️ 生成封面失败：{e}")
 
-# === 6. 插入封面路径 ===
+# === 6. 插入封面路径和确保正确的YAML格式 ===
+# 修复可能的嵌套YAML代码块问题
+content = re.sub(r'```yaml[\s\S]*?```', '', content)
+
+# 确保YAML中包含author字段
+if "author:" not in content[:500]:
+    # 查找第二个---并在其前面插入author字段
+    parts = content.split("---")
+    if len(parts) >= 3:
+        yaml_part = parts[1]
+        if not yaml_part.strip().endswith("author:"):
+            parts[1] = yaml_part + "\nauthor: AI助手\n"
+        content = "---".join(parts)
+
+# 插入封面路径
 if content.startswith("---"):
-    content = content.replace("---", f"---\ncover: ./images/{today}-{slug}.png", 1)
+    # 检查是否已有cover字段，如果没有则添加
+    if "cover:" not in content[:500]:
+        content = content.replace("---", f"---\ncover: ./images/{today}-{slug}.png", 1)
 else:
-    content = f"---\ncover: ./images/{today}-{slug}.png\n---\n{content}"
+    content = f"---\ncover: ./images/{today}-{slug}.png\nauthor: AI助手\n---\n{content}"
 
 
 with open(blog_filename, "w", encoding="utf-8") as f:
