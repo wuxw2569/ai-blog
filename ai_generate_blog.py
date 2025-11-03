@@ -63,19 +63,37 @@ content = resp.choices[0].message.content.strip()
 
 # === 5. 生成封面图 ===
 print("🎨 正在生成封面图...")
-image_prompt = f"一张横版16:9的封面图，主题是“{topic}”，风格未来感、极简科技感、亮色调"
-img_resp = client.images.generations(
-    model="cogview-3",
-    prompt=image_prompt,
-    size="1024x576"
-)
-image_base64 = img_resp.data[0].b64_json
-with open(image_filename, "wb") as f:
-    f.write(base64.b64decode(image_base64))
-print(f"🖼️ 封面已保存：{image_filename}")
+
+try:
+    image_prompt = f"一张横版16:9的封面图，主题是“{topic}”，风格未来感、极简科技感、亮色调"
+
+    img_resp = client.images.generations(
+        model="cogview-3",
+        prompt=image_prompt,
+        size="1024x576"
+    )
+
+    # 判断返回是否正常
+    if img_resp and hasattr(img_resp, "data") and len(img_resp.data) > 0:
+        image_base64 = getattr(img_resp.data[0], "b64_json", None)
+        if image_base64:
+            with open(image_filename, "wb") as f:
+                f.write(base64.b64decode(image_base64))
+            print(f"🖼️ 封面已保存：{image_filename}")
+        else:
+            print("⚠️ 未返回有效图像数据，跳过封面保存。")
+    else:
+        print("⚠️ AI 未生成图像（data 为空），跳过封面生成。")
+
+except Exception as e:
+    print(f"⚠️ 生成封面失败：{e}")
 
 # === 6. 插入封面路径 ===
-content = content.replace("---", f"---\ncover: ./images/{today}-{slug}.png", 1)
+if content.startswith("---"):
+    content = content.replace("---", f"---\ncover: ./images/{today}-{slug}.png", 1)
+else:
+    content = f"---\ncover: ./images/{today}-{slug}.png\n---\n{content}"
+
 
 with open(blog_filename, "w", encoding="utf-8") as f:
     f.write(content)
