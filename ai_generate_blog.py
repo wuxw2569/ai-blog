@@ -101,7 +101,7 @@ xhs_resp = client.chat.completions.create(
     model="glm-4-flash",
     messages=[{"role": "user", "content": xhs_prompt}],
 )
-xhs_text = xhs_resp.choices[0].message["content"].strip()
+xhs_text = xhs_resp.choices[0].message.content.strip()
 
 xhs_header = f"""---
 title: {topic}
