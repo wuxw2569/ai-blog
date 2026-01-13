@@ -26,6 +26,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install zhipuai
+          pip install sniffio
 
       - name: Generate Blog + XHS
         env:
